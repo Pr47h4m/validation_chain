@@ -1,3 +1,11 @@
+## 0.0.7
+
+Updated example
+
+## 0.0.6
+
+Added documentation
+
 ## 0.0.5
 
 Added example app

@@ -12,7 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  validation_chain: ^0.0.4
+
+  validation_chain:
+    path: ../
 
 dev_dependencies:
   flutter_test:

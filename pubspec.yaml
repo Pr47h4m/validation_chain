@@ -1,6 +1,6 @@
 name: validation_chain
 description: Validation Chain API for TextFormField in Flutter or Backend applications made with Dart.
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/Pr47h4m/validation_chain
 
 environment:
