@@ -1,6 +1,6 @@
 # Validation Chain
 
-### A validation chain api to use with ```TextFormField``` or Backend applicaitons made with dart.
+### A validation chain api to use with ```TextFormField``` in Flutter or Backend applicaitons made with dart.
 
 ## Usage
 
