@@ -1,0 +1,19 @@
+name: validation_chain
+description: Validation Chain API.
+version: 0.0.5
+homepage: https://github.com/Pr47h4m/validation_chain
+
+environment:
+  sdk: ">=2.18.2 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:

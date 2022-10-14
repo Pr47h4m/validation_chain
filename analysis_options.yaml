@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    avoid_print: true
+    prefer_single_quotes: true
+    prefer_relative_imports: true
+    require_trailing_commas: true
+    recursive_getters: true
