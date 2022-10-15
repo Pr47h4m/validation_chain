@@ -1,3 +1,23 @@
+## 0.0.8+4
+
+Added maintainers section in README.md
+
+## 0.0.8+3
+
+Updated documentation
+
+## 0.0.8+2
+
+Added documentation
+
+## 0.0.8+1
+
+Updated example code, README.md
+
+## 0.0.8
+
+Bug fixes, documentation updates, added MapValidator, Sanitizable interface & MapSanitizer
+
 ## 0.0.7+3
 
 Updated changelog

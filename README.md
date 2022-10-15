@@ -1,6 +1,10 @@
 # Validation Chain
 
-### A validation chain api to use with ```TextFormField``` in Flutter or Backend applicaitons made with dart.
+## ValidationChain, MapValidator, MapSanitizer, Sanitizable interface.
+
+### A ValidationChain api to use with ```TextFormField``` in Flutter or Backend applicaitons made with dart.
+### A MapValidator api to validate ```map<dynamic, dynamic>```.
+### A MapSanitizer api to sanitize ```map<dynamic, dynamic>```.
 
 ## Usage
 
@@ -13,14 +17,9 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatefulWidget {
-  const App({super.key});
+class App extends StatelessWidget {
+  App({super.key});
 
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -60,7 +59,7 @@ class _AppState extends State<App> {
   }
 
   String? compulsory(String? value) {
-    return value != null && value.isEmpty ? 'Required' : null;
+    return (value?.isEmpty ?? true) ? 'Required' : null;
   }
 
   String? tooShort(String? value) {
@@ -77,8 +76,48 @@ Backend applications
 ```dart
 import 'package:validation_chain/validation_chain.dart';
 
+void main() {
+  // example of using ValidationChain
+  const validationChain = ValidationChain([
+    compulsory,
+    tooShort,
+    tooLong,
+  ]);
+
+  validationChain.validate('');            // 'Required'
+  validationChain.validate('Hey');         // 'Too Short'
+  validationChain.validate('Hello');       // null
+  validationChain.validate('Hello World'); // 'Too Long'
+
+  // example of using MapSanitizer & MapValidator
+  final payload = <String, dynamic>{
+    'email': '   YourName@Example.com   ',
+    'password': ' 123456 ',
+  };
+
+  final mapSanitizers = <dynamic, List<Sanitizer>>{
+    'email': [trim, lowerCase],
+    'password': [trim],
+  };
+
+  MapSanitizer(mapSanitizers).sanitize(
+    payload,
+  ); // {'email': 'yourname@example.com', 'password': '123456'}
+
+  final mapValidators = <dynamic, List<Validator>>{
+    'email': [compulsory],
+    'password': [compulsory, tooShort],
+  };
+
+  MapValidator(mapValidators).validate(payload); // null
+  payload['email'] = null;                       // intentionally making email null
+  MapValidator(mapValidators).validate(payload); // Required
+}
+
+/* -----Utility functions----- */
+
 String? compulsory(String? value) {
-  return value != null && value.isEmpty ? 'Required' : null;
+  return (value?.isEmpty ?? true) ? 'Required' : null;
 }
 
 String? tooShort(String? value) {
@@ -89,14 +128,14 @@ String? tooLong(String? value) {
   return value != null && value.length > 10 ? 'Too Long' : null;
 }
 
-final validationChain = ValidationChain([
-    compulsory,
-    tooShort,
-    tooLong,
-]);
-    
-validationChain.validate('');               // 'Required'
-validationChain.validate('Hey');            // 'Too Short'
-validationChain.validate('Hello');          // null
-validationChain.validate('Hello World');    // 'Too Long'
+String? trim(String? value) {
+  return value?.trim();
+}
+
+String? lowerCase(String? value) {
+  return value?.toLowerCase();
+}
 ```
+
+## Maintainers
+[<img height="48px" width="48px" src="https://avatars.githubusercontent.com/u/56750378?v=4" alt="pr47h4m" title="Pratham Jaiswal" style="border-radius: 48px"/>](https://github.com/pr47h4m)
