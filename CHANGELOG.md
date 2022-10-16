@@ -1,3 +1,23 @@
+## 0.0.9+4
+
+Updated README.md
+
+## 0.0.9+3
+
+Updated README.md
+
+## 0.0.9+2
+
+Added navigation in README.md
+
+## 0.0.9+1
+
+Updated README.md
+
+## 0.0.9
+
+Added ValidationError model & rawValidate function to MapValidator
+
 ## 0.0.8+4
 
 Added maintainers section in README.md

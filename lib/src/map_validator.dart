@@ -1,4 +1,5 @@
 import 'types.dart';
+import 'validation_error.dart';
 
 class MapValidator {
   final Map<dynamic, List<Validator>> mapValidators;
@@ -16,16 +17,35 @@ class MapValidator {
     final keys = mapValidators.keys;
     for (int i = 0; i < keys.length; ++i) {
       final key = keys.elementAt(i);
-      if (map.containsKey(key)) {
-        final validators = mapValidators[key]!;
-        for (int j = 0; j < validators.length; ++j) {
-          final error = validators[j].call(map[key]);
-          if (error != null) {
-            return error;
-          }
+      final validators = mapValidators[key]!;
+      for (int j = 0; j < validators.length; ++j) {
+        final error = validators[j].call(map[key]);
+        if (error != null) {
+          return error;
         }
       }
     }
     return null;
+  }
+
+  List<ValidationError>? rawValidate(Map<dynamic, dynamic> map) {
+    final errors = <ValidationError>[];
+    final keys = mapValidators.keys;
+    for (int i = 0; i < keys.length; ++i) {
+      ValidationError? validationError;
+      final key = keys.elementAt(i);
+      final validators = mapValidators[key]!;
+      for (int j = 0; j < validators.length; ++j) {
+        final error = validators[j].call(map[key]);
+        if (error != null) {
+          validationError ??= ValidationError(field: key, errors: <String>[]);
+          validationError.errors.add(error);
+        }
+      }
+      if (validationError != null) {
+        errors.add(validationError);
+      }
+    }
+    return errors.isNotEmpty ? errors : null;
   }
 }

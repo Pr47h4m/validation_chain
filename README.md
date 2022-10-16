@@ -6,13 +6,11 @@
 
 ## `ValidationChain`, `MapValidator`, `MapSanitizer`, `Sanitizable` interface.
 
-### A [`ValidationChain`]() api to use with [`TextFormField`](https://api.flutter.dev/flutter/material/TextFormField-class.html) in [Flutter](https://flutter.dev) or Backend applicaitons made with [Dart](https://dart.dev).
-### A [`MapValidator`]() api to validate `map<dynamic, dynamic>`.
-### A [`MapSanitizer`]() api to sanitize `map<dynamic, dynamic>`.
+### A [`ValidationChain`](#validationchain-with-textformfield-in-flutter) api to use with [`TextFormField`](https://api.flutter.dev/flutter/material/TextFormField-class.html) in [Flutter](https://flutter.dev) or Backend applicaitons made with [Dart](https://dart.dev).
+### A [`MapValidator`](#mapvalidator) api to validate `map<dynamic, dynamic>`.
+### A [`MapSanitizer`](#mapsanitizer) api to sanitize `map<dynamic, dynamic>`.
 
 ## Usage
-
-<br>
 
 ### ValidationChain with TextFormField in Flutter
 
@@ -86,8 +84,6 @@ class App extends StatelessWidget {
 
 </details>
 
-<br>
-
 ### ValidationChain with Dart CLI based apps
 
 <details>
@@ -128,8 +124,6 @@ String? tooLong(String? value) {
 
 </details>
 
-<br>
-
 ### MapSanitizer
 
 <details>
@@ -169,8 +163,6 @@ String? lowerCase(String? value) {
 
 </details>
 
-<br>
-
 ### MapValidator
 
 <details>
@@ -193,7 +185,7 @@ void main() {
   };
 
   MapValidator(mapValidators).validate(payload);    // Required
-  MapValidator(mapValidators).rawValidate(payload); // [{'field': 'email', 'errors': ['Required']}, {'field': 'password', 'errors': ['Required']}]
+  MapValidator(mapValidators).rawValidate(payload); // [{'field': 'email', 'errors': ['Required']}, {'field': 'password', 'errors': ['Too Short']}]
 }
 
 /* -----Utility functions----- */
@@ -212,8 +204,6 @@ String? tooLong(String? value) {
 ```
 
 </details>
-
-<br>
 
 ### Using ValidationChain, MapSanitizer & MapValidator together 🚀
 
@@ -238,7 +228,7 @@ void main() {
   validationChain.validate('Hello');       // null
   validationChain.validate('Hello World'); // 'Too Long'
 
-  // example of using MapSanitizer & MapValidator
+  // example of using MapSanitizer & MapValidator & ValidationChain
   final payload = <String, dynamic>{
     'email': '   YourName@Example.com   ',
     'password': ' 123456 ',
@@ -255,12 +245,14 @@ void main() {
 
   final mapValidators = <dynamic, List<Validator>>{
     'email': [compulsory],
-    'password': [compulsory, tooShort],
+    'password': [validationChain.validate], // you can also pass pre created ValidationChain like this, Note: ValidationChain.validate returns the first error in the chain and does not test next validators in the chain
   };
 
   MapValidator(mapValidators).validate(payload); // null
   payload['email'] = null;                       // intentionally making email null
   MapValidator(mapValidators).validate(payload); // Required
+  payload['password'] = '1234';
+  MapValidator(mapValidators).rawValidate(payload)?.map((e) => e.toJson()); // ({'field': 'email','errors': ['Required']}, {'field': 'password', 'errors': ['Too Short']})
 }
 
 /* -----Utility functions----- */

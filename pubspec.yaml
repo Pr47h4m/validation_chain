@@ -1,6 +1,6 @@
 name: validation_chain
 description: ValidationChain, MapValidator, MapSanitizer, Sanitizable interface.
-version: 0.0.8+4
+version: 0.0.9+4
 homepage: https://github.com/Pr47h4m/validation_chain
 
 environment:

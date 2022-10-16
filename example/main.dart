@@ -30,7 +30,9 @@ void main() {
 
   final mapValidators = <dynamic, List<Validator>>{
     'email': [compulsory],
-    'password': [compulsory, tooShort],
+    'password': [
+      validationChain.validate
+    ], // you can also pass pre created ValidationChain like this, Note: ValidationChain.validate returns the first error in the chain and do not tests next validator in the chain
   };
 
   MapValidator(mapValidators).validate(payload); // null
