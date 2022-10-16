@@ -1,5 +1,6 @@
 # Validation Chain
 ![](https://img.shields.io/pub/v/validation_chain.svg)
+![](https://img.shields.io/pub/points/validation_chain?color=2E8B57&label=pub%20points)
 ![](https://img.shields.io/github/workflow/status/pr47h4m/validation_chain/Dart)
 ![](https://img.shields.io/github/stars/pr47h4m/validation_chain.svg?style=flat&logo=github&colorB=deeppink&label=stars)
 ![](https://img.shields.io/badge/license-MIT-purple.svg)
