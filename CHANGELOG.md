@@ -1,3 +1,7 @@
+## 0.0.10
+
+Added SanitizationChain API
+
 ## 0.0.9+4
 
 Updated README.md

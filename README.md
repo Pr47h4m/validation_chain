@@ -7,7 +7,11 @@
 ## `ValidationChain`, `MapValidator`, `MapSanitizer`, `Sanitizable` interface.
 
 ### A [`ValidationChain`](#validationchain-with-textformfield-in-flutter) api to use with [`TextFormField`](https://api.flutter.dev/flutter/material/TextFormField-class.html) in [Flutter](https://flutter.dev) or Backend applicaitons made with [Dart](https://dart.dev).
+
+### A [`SanitizationChain`](#sanitizationchain-with-textformfield-in-flutter) api to use with [`TextFormField`](https://api.flutter.dev/flutter/material/TextFormField-class.html) in [Flutter](https://flutter.dev) or Backend applicaitons made with [Dart](https://dart.dev).
+
 ### A [`MapValidator`](#mapvalidator) api to validate `map<dynamic, dynamic>`.
+
 ### A [`MapSanitizer`](#mapsanitizer) api to sanitize `map<dynamic, dynamic>`.
 
 ## Usage
@@ -46,16 +50,12 @@ class App extends StatelessWidget {
               key: _formKey,
               child: TextFormField(
                 decoration: const InputDecoration(labelText: 'Name'),
-                validator: ValidationChain([
-                  compulsory,
-                  tooShort,
-                  tooLong,
-                ]).validate,
+                validator: ValidationChain(
+                  [compulsory, tooShort, tooLong],
+                ).validate,
               ),
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            const SizedBox(height: 32),
             ElevatedButton(
               child: const Text('Validate'),
               onPressed: () {
@@ -67,6 +67,8 @@ class App extends StatelessWidget {
       ),
     );
   }
+
+  /* -----Utility functions----- */
 
   String? compulsory(String? value) {
     return (value?.isEmpty ?? true) ? 'Required' : null;
@@ -95,11 +97,9 @@ Example
 import 'package:validation_chain/validation_chain.dart';
 
 void main() {
-  const validationChain = ValidationChain([
-    compulsory,
-    tooShort,
-    tooLong,
-  ]);
+  const validationChain = ValidationChain(
+    [compulsory, tooShort, tooLong],
+  );
 
   validationChain.validate('');            // 'Required'
   validationChain.validate('Hey');         // 'Too Short'
@@ -119,6 +119,109 @@ String? tooShort(String? value) {
 
 String? tooLong(String? value) {
   return value != null && value.length > 10 ? 'Too Long' : null;
+}
+```
+
+</details>
+
+### SanitizationChain with TextFormField in Flutter
+
+<details>
+<summary>
+Example
+</summary>
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:validation_chain/validation_chain.dart';
+
+void main() {
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  App({super.key});
+
+  final _formKey = GlobalKey<FormState>();
+  final _email = TextEditingController(text: '    YourEmail@Example.com    ');
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Sanitization Chain Example'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Form(
+              key: _formKey,
+              child: TextFormField(
+                controller: _email,
+                decoration: const InputDecoration(labelText: 'Email'),
+                onSaved: (value) {
+                  _email.text = SanitizerChain(
+                        [trim, lowerCase],
+                      ).sanitize(value) ??
+                      '';
+                },
+              ),
+            ),
+            const SizedBox(height: 32),
+            ElevatedButton(
+              child: const Text('Sanitize'),
+              onPressed: () {
+                _formKey.currentState!.save();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /* -----Utility functions----- */
+
+  String? trim(String? value) {
+    return value?.trim();
+  }
+
+  String? lowerCase(String? value) {
+    return value?.toLowerCase();
+  }
+}
+```
+
+</details>
+
+### SanitizationChain with Dart CLI based apps
+
+<details>
+<summary>
+Example
+</summary>
+
+```dart
+import 'package:validation_chain/validation_chain.dart';
+
+void main() {
+  const sanitizationChain = SanitizationChain([
+    trim,
+    lowerCase,
+  ]);
+
+  sanitizationChain.sanitize('   YourName@Example.com   '); // 'yourname@example.com'
+}
+
+/* -----Utility functions----- */
+
+String? trim(String? value) {
+  return value?.trim();
+}
+
+String? lowerCase(String? value) {
+  return value?.toLowerCase();
 }
 ```
 

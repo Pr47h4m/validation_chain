@@ -2,11 +2,9 @@ import 'package:validation_chain/validation_chain.dart';
 
 void main() {
   // example of using ValidationChain
-  const validationChain = ValidationChain([
-    compulsory,
-    tooShort,
-    tooLong,
-  ]);
+  const validationChain = ValidationChain(
+    [compulsory, tooShort, tooLong],
+  );
 
   validationChain.validate(''); // 'Required'
   validationChain.validate('Hey'); // 'Too Short'
