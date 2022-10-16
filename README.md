@@ -1,7 +1,7 @@
 # Validation Chain
-<img src="https://img.shields.io/pub/v/validation_chain.svg" />
-<img src="https://img.shields.io/github/stars/pr47h4m/validation_chain.svg?style=flat&logo=github&colorB=deeppink&label=stars" />
-<img src="https://img.shields.io/badge/license-MIT-purple.svg" />
+![](https://img.shields.io/pub/v/validation_chain.svg)
+![](https://img.shields.io/github/stars/pr47h4m/validation_chain.svg?style=flat&logo=github&colorB=deeppink&label=stars)
+![](https://img.shields.io/badge/license-MIT-purple.svg)
 
 
 ## `ValidationChain`, `MapValidator`, `MapSanitizer`, `Sanitizable` interface.
