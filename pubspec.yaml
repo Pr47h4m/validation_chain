@@ -1,19 +1,11 @@
 name: validation_chain
 description: ValidationChain, SanitizationChain, MapValidator, MapSanitizer, Sanitizable interface.
-version: 0.0.10
+version: 0.0.10+1
 homepage: https://github.com/Pr47h4m/validation_chain
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
-  flutter: ">=1.17.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.0
-
-flutter:
+  lints: ^2.0.0
+  test: ^1.16.0

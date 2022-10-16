@@ -1,3 +1,7 @@
+## 0.0.10+1
+
+Updated pubspec.yaml
+
 ## 0.0.10
 
 Added SanitizationChain API

@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:validation_chain/validation_chain.dart';
 
 class Person implements Sanitizable {
