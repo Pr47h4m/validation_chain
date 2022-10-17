@@ -23,11 +23,9 @@ It is done by passing `SanitizationChain` to the `onSaved` property of `TextForm
 
 That helps the developer to sanitize all the values before passing them to the backend, which reduces the chance of errors due to unsanitized data
 
-### [`MapValidator`](#mapvalidator) api to validate `map<dynamic, dynamic>`.
+### [`MapValidator`](#mapvalidator) / [`MapSanitizer`](#mapsanitizer) api to validate/sanitize `Map<dynamic, dynamic>`.
 
 `MapValidator` and `MapSanitizer` are the best benefits provided by the package to validate/sanitize `Map<dynamic, dynamic>`. That is very useful when we develop server-side / CLI-based apps using dart.
-
-### [`MapSanitizer`](#mapsanitizer) api to sanitize `map<dynamic, dynamic>`.
 
 ## Usage
 
