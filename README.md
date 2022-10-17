@@ -15,7 +15,7 @@ It is done by passing `ValidationChain` to the `validator` property of `TextForm
 
 That helps the developer to keep source code organized by separating validation logic from UI.
 
-### A [`SanitizationChain`](#sanitizationchain-with-textformfield-in-flutter) api to use with [`TextFormField`](https://api.flutter.dev/flutter/material/TextFormField-class.html) in [Flutter](https://flutter.dev) or Backend applicaitons made with [Dart](https://dart.dev).
+### [`SanitizationChain`](#sanitizationchain-with-textformfield-in-flutter) api to use with [`TextFormField`](https://api.flutter.dev/flutter/material/TextFormField-class.html) in [Flutter](https://flutter.dev) or Backend applicaitons made with [Dart](https://dart.dev).
 
 `SanitizationChain` is an Array of `Sanitizer` functions that can be used to sanitize the content of `TextFormField` in Flutter.
 
@@ -23,11 +23,11 @@ It is done by passing `SanitizationChain` to the `onSaved` property of `TextForm
 
 That helps the developer to sanitize all the values before passing them to the backend, which reduces the chance of errors due to unsanitized data
 
-### A [`MapValidator`](#mapvalidator) api to validate `map<dynamic, dynamic>`.
+### [`MapValidator`](#mapvalidator) api to validate `map<dynamic, dynamic>`.
 
 `MapValidator` and `MapSanitizer` are the best benefits provided by the package to validate/sanitize `Map<dynamic, dynamic>`. That is very useful when we develop server-side / CLI-based apps using dart.
 
-### A [`MapSanitizer`](#mapsanitizer) api to sanitize `map<dynamic, dynamic>`.
+### [`MapSanitizer`](#mapsanitizer) api to sanitize `map<dynamic, dynamic>`.
 
 ## Usage
 
