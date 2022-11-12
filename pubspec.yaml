@@ -1,10 +1,16 @@
 name: validation_chain
 description: ValidationChain, SanitizationChain, MapValidator, MapSanitizer, Sanitizable interface.
-version: 0.0.10+1
+
+version: 0.0.11
+
 homepage: https://github.com/Pr47h4m/validation_chain
+repository: https://github.com/Pr47h4m/validation_chain
+issue_tracker: https://github.com/Pr47h4m/validation_chain/issues
+funding:
+  - https://www.buymeacoffee.com/pr47h4m
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 dev_dependencies:
   lints: ^2.0.0

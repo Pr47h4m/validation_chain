@@ -1,3 +1,15 @@
+## 0.0.11
+
+Updated pubspec.yaml
+
+## 0.0.10+3
+
+`sdk: ">=2.14.0 <3.0.0"`
+
+## 0.0.10+2
+
+Updated README.md
+
 ## 0.0.10+1
 
 Updated pubspec.yaml
